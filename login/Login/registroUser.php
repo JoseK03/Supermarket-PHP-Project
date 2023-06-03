@@ -40,7 +40,7 @@ class RegistroUser extends Conectar{
         return $this->email;
     }
 
-    public function SetUserName(username){
+    public function SetUserName($username){
         $this->username = $username;
     }
 
@@ -54,6 +54,14 @@ class RegistroUser extends Conectar{
     
     public function GetPassword(){
         return $this->password;
+    }
+
+    public function InsertData(){
+        try {
+            $stm = $this->dbCnx->prepare("INSERT INTO users(id, empleado_id, email, username, password  )");
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
 
