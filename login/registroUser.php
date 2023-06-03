@@ -1,5 +1,7 @@
 <?php
 
+require_once("../config/db.php");
+require_once("../config/conectar.php");
 class RegistroUser extends Conectar{
 
     private $id;
@@ -8,12 +10,14 @@ class RegistroUser extends Conectar{
     private $username;
     private $password;
 
-    public function __construct($id = 0, $empleado_id=0,$email="",$username="",$password=""){
+    public function __construct($id = 0, $empleado_id=0,$email="",$username="",$password="", $dbCnx=""){
         $this->id = $id;
         $this->empleado_id = $empleado_id;
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+
+        parent::__construct($dbCnx);
     }
 
     public function SetId($id){
@@ -58,9 +62,10 @@ class RegistroUser extends Conectar{
 
     public function InsertData(){
         try {
-            $stm = $this->dbCnx->prepare("INSERT INTO users(id, empleado_id, email, username, password  )");
-        } catch (\Throwable $th) {
-            //throw $th;
+            $stm = $this->dbCnx->prepare("INSERT INTO users(empleado_id, email, username, password) values (?,?,?,?)");
+            $stm->execute([$this->empleado_id, $this->email, $this->username, md5($this->password)]);
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
     }
 

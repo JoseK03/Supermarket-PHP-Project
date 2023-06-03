@@ -1,3 +1,15 @@
+<?php
+
+
+ini_set("display_errors", 1);
+
+ini_set("display_startup_errors", 1);
+
+error_reporting(E_ALL);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +54,7 @@
                         />
                     </div>
                  
-                    <input="submit" class="btn btn-primary" value="loguearse" name="loguearse"></input>
+                    <input="submit" class="btn btn-primary" value="loguearse" name="loguearse">INGRESAR</input>
                   </form>
                   
 
@@ -95,7 +107,7 @@
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
-                    <input="submit" class="btn btn-primary" value="registrarse" name="registrarse"></input>
+                    <input type="submit" class="btn btn-primary" value="registrarse" name="registrarse">REGISTRARSE</input>
                   </form>
 
             </div>
