@@ -12,9 +12,12 @@ CREATE TABLE  categorias(
 
 CREATE TABLE clientes(
     cliente_id INT primary key AUTO_INCREMENT,
-    celular INT,
-    compañia VARCHAR (50) 
+    nombre VARCHAR (50) NOT NULL,
+    celular INT NOT NULL,
+    compañia VARCHAR (50) NOT NULL 
 );
+
+
 
 CREATE TABLE empleados(
     empleado_id INT primary key AUTO_INCREMENT,
@@ -63,6 +66,8 @@ CREATE TABLE productos(
     proveedor_id INT,
     nombre_producto VARCHAR(50),
     descontinuado VARCHAR(50),
+    Foreign Key (categoria_id) REFERENCES categorias(categoria_id),
+    Foreign Key (proveedor_id) REFERENCES proveedores(proveedor_id)
 );
 
 CREATE TABLE users(

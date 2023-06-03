@@ -17,6 +17,7 @@ $val=$record[0];
 if(isset($_POST['editar'])){
     $data->SetCelular($_POST['celular']);
     $data->SetCompañia($_POST['compañia']);
+    $data->SetNombre($_POST['nombre']);
 
     $data->UpDate();
     echo "<script>alert('los datos han sido actulizados exitosamente');document.location='clientes.php'</script>";
@@ -75,7 +76,19 @@ if(isset($_POST['editar'])){
       <div class="menuTabla contenedor2">
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Celular</label>
+                <label for="nombre" class="form-label">Nombre</label>
+                <input 
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  class="form-control"  
+                  value = "<?php echo $val['nombre']; ?>"
+                  
+                 
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="celular" class="form-label">Celular</label>
                 <input 
                   type="text"
                   id="celular"

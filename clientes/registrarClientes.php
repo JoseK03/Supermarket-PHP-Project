@@ -11,7 +11,7 @@ if(isset($_POST['clientes'])){
     require_once("config.php");
 
     $config = new Config();
-
+    $config->SetNombre($_POST['nombre']);
     $config->SetCelular($_POST['celular']);
     $config->SetCompañia($_POST['compañia']);
 

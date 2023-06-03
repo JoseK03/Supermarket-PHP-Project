@@ -17,13 +17,15 @@ class Config extends Conectar{
     private $cliente_id;
     private $celular;
     private $compañia;
+    private $nombre;
     
    
 
-    public function __construct($cliente_id = 0, $celular = 0, $compañia = "", $dbCnx = ""){
+    public function __construct($cliente_id = 0, $celular = 0, $compañia = "",$nombre = "", $dbCnx = ""){
         $this->cliente_id = $cliente_id;
         $this->celular = $celular;
         $this->compañia = $compañia;
+        $this->nombre = $nombre;
 
         parent:: __construct($dbCnx);
     }
@@ -52,11 +54,19 @@ class Config extends Conectar{
         return $this->compañia;
     }
 
+    public function SetNombre($nombre){
+        $this->nombre = $nombre;
+    }
+    public function GetNombre(){
+        return $this->nombre;
+    }
+
+   
     
     public function InsertData(){
         try {
-            $stm = $this->dbCnx->prepare("INSERT INTO clientes(celular,compañia) values(?,?)");
-            $stm->execute([$this->celular, $this->compañia]);
+            $stm = $this->dbCnx->prepare("INSERT INTO clientes(nombre,celular,compañia) values(?,?,?)");
+            $stm->execute([$this->nombre,$this->celular, $this->compañia]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -93,8 +103,8 @@ class Config extends Conectar{
     
     public function UpDate(){
         try {
-            $stm = $this->dbCnx->prepare("UPDATE clientes SET celular = ?, compañia = ? WHERE cliente_id = ?");
-            $stm->execute([$this->celular, $this->compañia, $this->cliente_id]);
+            $stm = $this->dbCnx->prepare("UPDATE clientes SET celular = ?, compañia = ?, nombre = ? WHERE cliente_id = ?");
+            $stm->execute([$this->celular, $this->compañia, $this->nombre, $this->cliente_id]);
             return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();

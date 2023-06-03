@@ -1,4 +1,9 @@
 <?php
+ini_set("display_errors", 1);
+
+ini_set("display_startup_errors", 1);
+
+error_reporting(E_ALL);
 
 require_once("../config/db.php");
 require_once("../config/conectar.php");
@@ -60,10 +65,26 @@ class RegistroUser extends Conectar{
         return $this->password;
     }
 
+    public function CheckUser($email){
+        try {
+            $stm = $this->dbCnx->prepare("SELECT * FROM users WHERE email == '$email'");
+            $stm->execute();
+            if($stm->fecthColumn()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public function InsertData(){
         try {
             $stm = $this->dbCnx->prepare("INSERT INTO users(empleado_id, email, username, password) values (?,?,?,?)");
             $stm->execute([$this->empleado_id, $this->email, $this->username, md5($this->password)]);
+
+            
         } catch (Exception $e) {
             return $e->getMessage();
         }

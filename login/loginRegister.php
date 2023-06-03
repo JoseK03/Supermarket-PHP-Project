@@ -54,7 +54,7 @@ error_reporting(E_ALL);
                         />
                     </div>
                  
-                    <input="submit" class="btn btn-primary" value="loguearse" name="loguearse">INGRESAR</input>
+                    <input type="submit" class="btn btn-primary" value="loguearse" name="loguearse">INGRESAR</input>
                   </form>
                   
 

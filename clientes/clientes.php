@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 require_once("config.php");
 $data = new Config();
 $all = $data->ObtainAll();
+print_r($all);
 
 
 
@@ -84,6 +85,7 @@ $all = $data->ObtainAll();
             <tr>
               <th scope="col">id</th>
               <th scope="col">NOMBRES</th>
+              <th scope="col">CELULAR</th>
               <th scope="col">DESCRIPCION</th>
               <th scope="col">IMAGEN</th>
               <th scope="col">DETALLE</th>
@@ -101,6 +103,7 @@ $all = $data->ObtainAll();
 
             <tr>
                 <td> <?php echo $val ['cliente_id']?></td>
+                <td> <?php echo $val ['nombre']?></td>
                 <td> <?php echo $val ['celular']?></td>
                 <td> <?php echo $val ['compañia']?></td>
                 <td> <a href="borrarClientes.php?cliente_id=<?= $val['cliente_id']?> & req=delete" class="btn btn-danger">Eliminar</a></td>
@@ -138,8 +141,17 @@ $all = $data->ObtainAll();
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="registrarClientes.php" method="post">
+            <div class="mb-1 col-12">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input 
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  class="form-control"  
+                />
+              </div>
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Celular</label>
+                <label for="celular" class="form-label">Celular</label>
                 <input 
                   type="text"
                   id="celular"
@@ -149,7 +161,7 @@ $all = $data->ObtainAll();
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Compañia</label>
+                <label for="compañia" class="form-label">Compañia</label>
                 <input 
                   type="text"
                   id="compañia"
