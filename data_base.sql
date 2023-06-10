@@ -1,4 +1,4 @@
--- Active: 1685753414652@@127.0.0.1@3306@superMarket
+-- Active: 1686348933709@@127.0.0.1@3306@supermarket
 CREATE DATABASE supermarket;
 
 USE supermarket;
